@@ -3,6 +3,7 @@ package io.hextree.poc;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,21 +22,34 @@ public class MainActivity extends AppCompatActivity {
 
     static String TAG = "ProofOfConcept";
 
+    void debug(String msg) {
+        ((TextView)findViewById(R.id.text_debug)).append(msg+"\n");
+        Log.i(TAG, msg);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Log output
+        debug(IntentUtils.dumpIntent(this, getIntent()));
+
+        // Button 1 click
+        findViewById(R.id.button_1).setOnClickListener(v -> {
+            ((TextView)findViewById(R.id.text_debug)).append("Hello\n");
+        });
+
         // Working with Files
         // FilesUtil.copyFileFromAssetToInternal(this, "example.txt", "example.txt");
-        //FilesUtil.writeFile(this, "example2.txt", "dynamically writing file");
+        // FilesUtil.writeFile(this, "example2.txt", "dynamically writing file");
 
         // Working with FileProvider
         // Uri attackUri = FileProvider.getUriForFile(this, "io.hextree.attackprovider", new File(getFilesDir(), "example.txt"));
         // Uri fileUri = FileProvider.getUriForFile(this, "io.hextree.fileprovider", new File(getFilesDir(), "example.txt"));
 
-        IntentUtils.showDialog(this, getIntent());
+        // IntentUtils.showDialog(this, getIntent());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
