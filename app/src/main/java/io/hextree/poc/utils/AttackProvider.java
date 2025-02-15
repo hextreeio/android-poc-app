@@ -97,7 +97,7 @@ public class AttackProvider extends ContentProvider {
 
             return pipe[0];
         } catch (IOException e) {
-            throw new FileNotFoundException("Could not open pipe for: " + uri.toString());
+            throw new FileNotFoundException("Could not open pipe for: " + uri);
         }
     }
 

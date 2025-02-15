@@ -63,7 +63,7 @@ public class ProviderUtils {
         Cursor cursor = context.getContentResolver().query(contentUri, null, null, null, null);
 
         Log.d("Table", "--------------------------------");
-        Log.d("Table", "Dumping " + contentUri.toString());
+        Log.d("Table", "Dumping " + contentUri);
         Log.i("Table", "cursor: " + cursor);
         if (cursor != null) {
             Log.i("Table", "cursor.getColumnCount: " + cursor.getColumnCount());
